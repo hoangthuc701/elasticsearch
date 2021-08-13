@@ -1,0 +1,3 @@
+# /tools/vagrant/
+/tools/vagrant/*/.vagrant
+/tools/vagrant/*/Vagrantfile

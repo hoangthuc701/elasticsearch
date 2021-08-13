@@ -1,0 +1,24 @@
+# Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
+
+VAGRANTFILE_API_VERSION = "2"
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+
+    config.ssh.forward_agent = true
+
+    config.vm.hostname = "elastic2"
+    config.vm.box = "centos/7"
+
+    config.vm.provider :virtualbox do |v|
+        v.customize ["modifyvm", :id, "--memory", 1536]
+        v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+        v.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
+    end
+    
+    config.vm.network :forwarded_port, guest: 9200, host: 9202
+    config.vm.network :forwarded_port, guest: 5601, host: 5603
+    config.vm.provision :shell, :path => "bootstrap.sh"
+    config.vm.provision :shell, :path => "plugins.sh"
+    config.vm.provider :virtualbox do |v|
+        v.name = "centos_elasticsearch"
+    end
+end
