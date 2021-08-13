@@ -39,11 +39,11 @@ sudo sed -i -e '$a\' /etc/elasticsearch/elasticsearch.yml
 sudo sed -i -e '$a\' /etc/elasticsearch/elasticsearch.yml
 
 # create the kibana repo
-echo '[kibana-4.5]
-name=Kibana repository for 4.5.x packages
-baseurl=http://packages.elastic.co/kibana/4.5/centos
+echo '[kibana-4.6]
+name=Kibana repository for 4.6.x packages
+baseurl=https://packages.elastic.co/kibana/4.6/centos
 gpgcheck=1
-gpgkey=http://packages.elastic.co/GPG-KEY-elasticsearch
+gpgkey=https://packages.elastic.co/GPG-KEY-elasticsearch
 enabled=1' | sudo tee /etc/yum.repos.d/kibana.repo
 
 # install kibana
